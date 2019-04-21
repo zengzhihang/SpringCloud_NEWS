@@ -1,0 +1,22 @@
+server:
+  port: 8101
+spring:
+  application:
+    name: config
+  profiles:
+    active: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/zengzhihang/NEWS.git #配置GitHub远程仓库路径
+          username: zengzhihang #访问git仓库的用户名
+          password: zeng991215       #访问git仓库的密码
+      label: master  #配置仓库的分支
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ipAddress}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
